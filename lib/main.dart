@@ -97,6 +97,7 @@ class MyApp extends StatelessWidget {
           // )
 
         body: Row(children: [
+          Text("this is "),
           Text("This is our text"),
           Text("Login ",style: TextStyle(fontWeight: FontWeight.bold),),
         ],),

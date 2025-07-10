@@ -16,6 +16,8 @@ class _TextfieldvalidationState extends State<Textfieldvalidation> {
   final numberController = TextEditingController();
   final initailControllername = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  bool clicked = true;
+  bool imageclicked = true;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,22 @@ class _TextfieldvalidationState extends State<Textfieldvalidation> {
               SizedBox(height: 20,),
               TextFormField(
                 controller: passwordController,
+                obscureText: clicked,
                 decoration: InputDecoration(
+                  // if(){}else{}
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                        clicked
+                            ? Icons.visibility
+                            : Icons.visibility_off
+                    ),
+                    onPressed: (){
+                      setState(() {
+                        clicked = !clicked;
+                      });
+                    },
+                     ),
+
                   labelText:"Password",
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -151,8 +168,15 @@ class _TextfieldvalidationState extends State<Textfieldvalidation> {
 
 
               ),
+              imageclicked
+              ?Image.asset("assets/images/dog.jpg",height: 50,)
+              :Container(color: Colors.red,height: 30,),
               MaterialButton(
                 onPressed: (){
+                  setState(() {
+                    imageclicked=!imageclicked;
+
+                  });
 
                   if(formKey.currentState!.validate()){
                     ScaffoldMessenger.of(context).showSnackBar(
